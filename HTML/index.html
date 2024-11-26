@@ -13,24 +13,26 @@
     
     <main class="form-signin w-50 m-auto" style = "padding-top: 50px;"> <!-- 入力フォームの幅　-->
       <form>
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 fw-normal">新規登録</h1>
 
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email</label>
+        <div class="form-floating mb-3" >
+          <input type="email" class="form-control" id="Input" placeholder="name@example.com">
+          <label for="Input">メールアドレス</label>
         </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="Password" placeholder="Password">
+          <label for="Password">パスワード　(字～字まで)</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="Password-cfm" placeholder="Password-cfm">
+          <label for="Password-cfm">パスワード確認</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="username" placeholder="username">
+          <label for="username">お名前　(字～字まで)</label>
         </div>
 
-        <div class="form-check text-start my-3">
-          <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-          <label class="form-check-label" for="flexCheckDefault">
-            Remember me
-          </label>
-        </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <button class="btn btn-primary w-100 py-2" type="submit">登録</button>
         <p class="mt-5 mb-3 text-body-secondary" style="text-align: center;">&copy; 2025 mateGT</p>
       </form>
     </main>

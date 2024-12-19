@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>キャラ一覧</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <main class="container mx-auto p-8">
+    <h2 class="text-2xl font-bold mb-6">キャラ一覧</h2>
+    <div class="flex mb-4">
+      <input
+        type="text"
+        placeholder="キャラ名を検索..."
+        class="bg-white border border-gray-300 px-4 py-2 rounded w-full"
+        oninput="filterCharacters()"
+        id="search-bar"
+      />
+    </div>
+    <div id="character-grid" class="grid grid-cols-4 gap-4">
+      <!-- 87キャラの画像ボタンを配置 -->
+      <button class="p-4 bg-white rounded shadow" onclick="location.href='character-detail.html'">
+        <img src="キャラ画像1.png" alt="キャラ1" class="w-full rounded">
+        <p class="text-center mt-2">キャラ1</p>
+      </button>
+      <!-- 他のキャラも同様に配置 -->
+    </div>
+  </main>
+
+  <script>
+    function filterCharacters() {
+      const searchValue = document.getElementById('search-bar').value.toLowerCase();
+      const characterGrid = document.getElementById('character-grid').children;
+
+      for (let char of characterGrid) {
+        const charName = char.querySelector('p').textContent.toLowerCase();
+        if (charName.includes(searchValue)) {
+          char.style.display = 'block';
+        } else {
+          char.style.display = 'none';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>レートルーム作成 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">レートルーム作成</h1>
+
+    <!-- ルームID入力 -->
+    <div class="mb-6">
+      <label for="room-id" class="block text-sm font-semibold text-gray-700 mb-2">ルームID（5桁）</label>
+      <input type="text" id="room-id" class="w-full p-2 border rounded-lg" placeholder="ルームIDを入力">
+    </div>
+
+    <!-- パスワード入力 -->
+    <div class="mb-6">
+      <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">パスワード（4桁）</label>
+      <input type="text" id="password" class="w-full p-2 border rounded-lg" placeholder="4桁のパスワード">
+    </div>
+
+    <!-- レート上下限 -->
+    <div class="mb-6">
+      <label for="rating-lower" class="block text-sm font-semibold text-gray-700 mb-2">レート上下限</label>
+      <select id="rating-lower" class="w-full p-2 border rounded-lg">
+        <option value="1000">1000</option>
+        <option value="1200">1200</option>
+        <option value="1400">1400</option>
+      </select>
+    </div>
+
+    <!-- 作成ボタン -->
+    <div>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">ルーム作成</button>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マイページ編集 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto p-8">
+    <!-- アイコン編集 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">アイコン編集</h3>
+      <div class="flex items-center mb-4">
+        <img src="user-icon.jpg" alt="ユーザーアイコン" class="w-16 h-16 rounded-full mr-4">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">変更</button>
+      </div>
+    </div>
+
+    <!-- ユーザー名編集 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">ユーザー名編集</h3>
+      <input type="text" name="username" value="ユーザー名" class="w-full px-4 py-2 border rounded-lg">
+    </div>
+
+    <!-- 使用キャラ1・2 編集 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">使用キャラ編集</h3>
+      <div class="flex space-x-4">
+        <select class="w-full px-4 py-2 border rounded-lg">
+          <option value="キャラA">キャラA</option>
+          <option value="キャラB">キャラB</option>
+        </select>
+        <select class="w-full px-4 py-2 border rounded-lg">
+          <option value="キャラC">キャラC</option>
+          <option value="キャラD">キャラD</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ひとことコメント編集 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">ひとことコメント編集</h3>
+      <textarea name="comment" class="w-full px-4 py-2 border rounded-lg" rows="4">こんにちは！対戦楽しみです。</textarea>
+    </div>
+
+    <!-- 送信ボタン -->
+    <div>
+      <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">変更を保存</button>
+    </div>
+  </div>
+
+</body>
+</html>

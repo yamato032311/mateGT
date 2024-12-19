@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ルーム一覧 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">対戦ルーム一覧</h1>
+
+    <!-- タブ切り替え -->
+    <div class="mb-6">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded-l-lg">オープン部屋</button>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg">レート部屋</button>
+    </div>
+
+    <!-- レート制限検索 -->
+    <div class="mb-6">
+      <label for="rating-filter" class="text-sm font-semibold text-gray-700">レート制限:</label>
+      <select id="rating-filter" class="w-full p-2 border rounded-lg">
+        <option value="all">全て</option>
+        <option value="low">低</option>
+        <option value="medium">中</option>
+        <option value="high">高</option>
+      </select>
+    </div>
+
+    <!-- ルーム情報 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">部屋一覧</h3>
+      <ul>
+        <li class="border-b py-4 flex justify-between items-center">
+          <div class="flex items-center space-x-4">
+            <img src="user-icon.png" alt="ユーザーアイコン" class="w-12 h-12 rounded-full">
+            <div>
+              <div class="text-lg font-semibold">ユーザー名</div>
+              <div class="text-sm text-gray-600">部屋作成日時: 2024/12/01 12:00</div>
+              <div class="text-sm text-gray-600">部屋ID: 12345</div>
+            </div>
+          </div>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded-lg">参加</button>
+        </li>
+        <!-- 他のルームも同様にリスト追加 -->
+      </ul>
+    </div>
+
+    <!-- ルーム作成ボタン -->
+    <div>
+      <a href="/create-room" class="bg-green-600 text-white px-4 py-2 rounded-lg">ルーム作成</a>
+    </div>
+  </div>
+
+</body>
+</html>

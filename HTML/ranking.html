@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プレーヤーランキング</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <main class="container mx-auto p-8">
+    <h2 class="text-2xl font-bold mb-6">プレーヤーランキング</h2>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <div class="flex justify-center space-x-4 mb-4">
+        <button class="bg-gray-300 text-black px-4 py-2 rounded" onclick="changeRanking(1)">1〜20位</button>
+        <button class="bg-gray-300 text-black px-4 py-2 rounded" onclick="changeRanking(2)">21〜40位</button>
+        <button class="bg-gray-300 text-black px-4 py-2 rounded" onclick="changeRanking(3)">41〜60位</button>
+        <button class="bg-gray-300 text-black px-4 py-2 rounded" onclick="changeRanking(4)">61〜80位</button>
+        <button class="bg-gray-300 text-black px-4 py-2 rounded" onclick="changeRanking(5)">81〜100位</button>
+      </div>
+
+      <ul id="ranking-list"></ul>
+    </div>
+  </main>
+
+  <script>
+    const rankings = [
+      { name: "ユーザーA", rate: 2000 },
+      { name: "ユーザーB", rate: 1980 },
+      { name: "ユーザーC", rate: 1960 },
+      // 省略: 1〜100位のデータ
+    ];
+
+    function changeRanking(page) {
+      const start = (page - 1) * 20;
+      const end = page * 20;
+      const displayData = rankings.slice(start, end);
+
+      const rankingList = document.getElementById("ranking-list");
+      rankingList.innerHTML = "";
+
+      displayData.forEach((player, index) => {
+        const listItem = document.createElement("li");
+        listItem.className = "flex justify-between border-b py-2";
+        listItem.innerHTML = `<span>${start + index + 1}. ${player.name}</span><span>レート: ${player.rate}</span>`;
+        rankingList.appendChild(listItem);
+      });
+    }
+
+    changeRanking(1);
+  </script>
+</body>
+</html>

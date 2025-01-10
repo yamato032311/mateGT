@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新規登録 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+      <h1 class="text-2xl font-bold text-center mb-6">新規登録</h1>
+
+      <form action="/register" method="POST">
+        <!-- メールアドレス入力 -->
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">メールアドレス</label>
+          <input type="email" id="email" name="email" class="w-full px-4 py-2 mt-2 border rounded-lg" required>
+        </div>
+
+        <!-- パスワード入力 -->
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">パスワード</label>
+          <input type="password" id="password" name="password" class="w-full px-4 py-2 mt-2 border rounded-lg" required>
+        </div>
+
+        <!-- 名前入力 -->
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-700">名前</label>
+          <input type="text" id="name" name="name" class="w-full px-4 py-2 mt-2 border rounded-lg" required>
+        </div>
+
+        <!-- 登録ボタン -->
+        <div class="mb-4">
+          <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">登録する</button>
+        </div>
+
+        <div class="text-center">
+          <p class="text-sm text-gray-600">すでにアカウントをお持ちですか？ <a href="/login" class="text-blue-600 hover:underline">ログイン</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

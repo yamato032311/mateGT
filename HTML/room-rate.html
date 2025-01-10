@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>レートルーム詳細 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">レートルーム詳細</h1>
+
+    <!-- 参加者リスト -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">参加者</h3>
+      <div class="flex space-x-6">
+        <!-- 参加者1 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow-md w-1/2">
+          <img src="user1-icon.png" alt="ユーザーアイコン" class="w-16 h-16 rounded-full mx-auto mb-2">
+          <div class="font-semibold text-center">ユーザー名1</div>
+          <div class="text-sm text-gray-600 text-center">レート: 1200</div>
+          <div class="text-sm text-gray-600 text-center">使用キャラ: <img src="character1-icon.png" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
+          <div class="text-sm text-gray-600 text-center">ひとこと: "頑張ります！"</div>
+        </div>
+
+        <!-- 参加者2 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow-md w-1/2">
+          <img src="user2-icon.png" alt="ユーザーアイコン" class="w-16 h-16 rounded-full mx-auto mb-2">
+          <div class="font-semibold text-center">ユーザー名2</div>
+          <div class="text-sm text-gray-600 text-center">レート: 1300</div>
+          <div class="text-sm text-gray-600 text-center">使用キャラ: <img src="character2-icon.png" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
+          <div class="text-sm text-gray-600 text-center">ひとこと: "よろしくお願いします！"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 勝敗ボタン -->
+    <div class="text-center space-x-4 mb-6">
+      <button class="bg-green-600 text-white px-4 py-2 rounded-lg">勝ち</button>
+      <button class="bg-red-600 text-white px-4 py-2 rounded-lg">負け</button>
+      <button class="bg-gray-600 text-white px-4 py-2 rounded-lg">対戦中止</button>
+    </div>
+
+    <!-- ルームID、パスワード -->
+    <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+      <div class="text-sm text-gray-600">ルームID: 12345</div>
+      <div class="text-sm text-gray-600">パスワード: 1234</div>
+    </div>
+  </div>
+
+</body>
+</html>

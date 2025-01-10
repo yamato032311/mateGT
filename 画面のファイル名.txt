@@ -1,0 +1,34 @@
+
+BBS : Bulletin Board System(電子掲示板)
+
+bbs.html : 投稿一覧画面
+bbs-detail.html : 投稿詳細画面
+bbs-post.html : 新規投稿画面
+
+character-detail.html : キャラクター詳細画面
+character.html : キャラ一覧画面
+
+index.html(ranking.htmlの簡易版)
+footer.html
+header.html
+login.html
+logout.html
+sign-in.html
+退会用ページ
+
+ranking.html : ランキング画面
+
+mypage-change.html : マイページ編集画面
+mypage.html : マイページ
+
+
+room-make-open.html : ルーム作成(オープン)
+room-open2.html : 対戦ルーム(2人)
+room-open3.html : 対戦ルーム(3人)
+room-open4.html : 対戦ルーム(4人)
+
+room-make-rate.html : ルーム作成(レート)
+room-rate.html : 対戦ルーム(2人)
+
+popup.html : 対戦結果送信時の確認
+room.html : 対戦ルーム一覧画面

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マイページ - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto p-8">
+    <!-- ユーザー情報 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <!-- アイコンと編集ボタン -->
+      <div class="flex items-center mb-4">
+        <img src="user-icon.jpg" alt="ユーザーアイコン" class="w-16 h-16 rounded-full mr-4">
+        <button class="text-blue-600 hover:underline">アイコン編集</button>
+      </div>
+      
+      <!-- ユーザーID、名前、レート -->
+      <div class="mb-2">
+        <p class="text-xl font-semibold">ユーザー名</p>
+        <p class="text-sm text-gray-600">ID: user12345</p>
+        <p class="text-sm text-gray-600">レート: 1200</p>
+      </div>
+
+      <!-- 評価（☆5段階） -->
+      <div class="flex items-center mb-4">
+        <span class="text-yellow-500">★</span>
+        <span class="text-yellow-500">★</span>
+        <span class="text-yellow-500">★</span>
+        <span class="text-yellow-500">★</span>
+        <span class="text-gray-400">★</span>
+      </div>
+
+      <!-- 使用キャラ -->
+      <div class="flex mb-4">
+        <img src="character1-icon.jpg" alt="キャラ1" class="w-12 h-12 rounded-full mr-4">
+        <img src="character2-icon.jpg" alt="キャラ2" class="w-12 h-12 rounded-full">
+      </div>
+
+      <!-- ひとことコメント -->
+      <div class="mb-4">
+        <p class="text-sm text-gray-600">ひとこと: こんにちは！対戦楽しみです。</p>
+      </div>
+
+      <!-- ブロック一覧ボタン -->
+      <button class="bg-blue-600 text-white px-4 py-2 rounded-lg mb-6">ブロック一覧</button>
+    </div>
+
+    <!-- 対戦履歴 -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">対戦履歴</h3>
+      <ul>
+        <li class="border-b py-2">2024/12/01 - 勝利 - 対戦相手: user9876</li>
+        <li class="border-b py-2">2024/11/30 - 敗北 - 対戦相手: user2345</li>
+        <li class="border-b py-2">2024/11/29 - 引き分け - 対戦相手: user6789</li>
+      </ul>
+      <!-- グラフ化ボタン -->
+      <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded-lg">レート推移をグラフ化</button>
+    </div>
+
+    <!-- 日記一覧 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-xl font-semibold mb-4">日記一覧</h3>
+      <ul>
+        <li class="border-b py-2"><a href="/diary/1" class="text-blue-600 hover:underline">2024/12/01 - 今日の対戦</a></li>
+        <li class="border-b py-2"><a href="/diary/2" class="text-blue-600 hover:underline">2024/11/29 - 初めての大会参加</a></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オープンルーム待機画面 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <div class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">オープンルーム待機画面</h1>
+
+    <!-- 参加者リスト -->
+    <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h3 class="text-xl font-semibold mb-4">参加者</h3>
+      <div class="flex space-x-6">
+        <!-- プレイヤー1 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow-md w-1/2">
+          <img src="user1-icon.png" alt="ユーザーアイコン" class="w-16 h-16 rounded-full mx-auto mb-2">
+          <div class="font-semibold text-center">ユーザー名1</div>
+          <div class="text-sm text-gray-600 text-center">レート: 1200</div>
+          <div class="text-sm text-gray-600 text-center">使用キャラ: <img src="character1-icon.png" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
+          <div class="text-sm text-gray-600 text-center">ひとこと: "頑張ります！"</div>
+        </div>
+
+        <!-- プレイヤー2 -->
+        <div class="bg-gray-50 p-4 rounded-lg shadow-md w-1/2 flex items-center justify-center">
+          <div class="text-center">
+            <div class="text-gray-500 font-semibold">待機中...</div>
+            <div class="text-sm text-gray-400">プレイヤーが参加するのを待っています。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 退出ボタン -->
+    <div class="text-center mb-6">
+      <button class="bg-red-600 text-white px-4 py-2 rounded-lg">退出</button>
+    </div>
+
+    <!-- ルームID、パスワード -->
+    <div class="bg-white p-6 rounded-lg shadow-md mt-6 mb-6">
+      <div class="text-sm text-gray-600">ルームID: 12345</div>
+      <div class="text-sm text-gray-600">パスワード: 1234</div>
+    </div>
+
+    <!-- チャット欄 -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-xl font-semibold mb-4">チャット</h3>
+      <!-- チャットメッセージの表示エリア -->
+      <div class="h-48 overflow-auto bg-gray-100 p-4 rounded-lg mb-4" id="chat-messages">
+        <div class="mb-2">
+          <div class="font-semibold text-sm">ユーザー名1:</div>
+          <div class="text-sm text-gray-700">こんにちは！よろしくお願いします。</div>
+        </div>
+      </div>
+
+      <!-- チャット入力エリア -->
+      <div class="flex items-center">
+        <input type="text" placeholder="メッセージを入力..." class="flex-grow bg-gray-100 border border-gray-300 p-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500" id="chat-input">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-r-lg ml-2" id="send-btn">送信</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // メッセージ送信機能
+    document.getElementById('send-btn').addEventListener('click', function() {
+      var message = document.getElementById('chat-input').value;
+      if (message.trim()) {
+        var chatMessages = document.getElementById('chat-messages');
+        var newMessage = document.createElement('div');
+        newMessage.classList.add('mb-2');
+        newMessage.innerHTML = `<div class="font-semibold text-sm">あなた:</div><div class="text-sm text-gray-700">${message}</div>`;
+        chatMessages.appendChild(newMessage);
+        chatMessages.scrollTop = chatMessages.scrollHeight; // チャットを下にスクロール
+        document.getElementById('chat-input').value = ''; // 入力欄をクリア
+      }
+    });
+  </script>
+
+</body>
+</html>

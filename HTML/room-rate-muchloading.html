@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>レートルーム詳細 - mateGT</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+
+  <div class="container py-5">
+    <h1 class="text-center mb-4">レートルーム詳細</h1>
+
+    <!-- 参加者リスト -->
+    <div class="card mb-4 p-4">
+      <h3 class="text-xl font-semibold mb-4">参加者</h3>
+      <div class="row">
+        <!-- 参加者1 -->
+        <div class="col-12 col-md-6 mb-3">
+          <div class="card p-3 text-center">
+            <img src="user1-icon.png" alt="ユーザーアイコン" class="rounded-circle mb-2" style="width: 80px; height: 80px;">
+            <div class="font-weight-bold">ユーザー名1</div>
+            <div class="text-muted">レート: 1200</div>
+            <div class="text-muted">使用キャラ: <img src="character1-icon.png" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
+            <div class="text-muted">ひとこと: "頑張ります！"</div>
+          </div>
+        </div>
+
+        <!-- 参加者2 (プレイヤーが参加するのを待機中) -->
+        <div class="col-12 col-md-6 mb-3" id="player2">
+          <div class="card p-3 text-center">
+            <div class="text-muted">待機中...</div>
+            <div class="small text-muted">プレイヤーが参加するのを待っています。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 勝敗ボタン -->
+    <div class="text-center mb-4">
+      <button id="winButton" class="btn btn-success me-2" disabled>勝ち</button>
+      <button id="loseButton" class="btn btn-danger me-2" disabled>負け</button>
+      <button id="cancelButton" class="btn btn-secondary" disabled>対戦中止</button>
+    </div>
+
+    <!-- ルームID、パスワード -->
+    <div class="card p-3">
+      <div class="small text-muted">ルームID: 12345</div>
+      <div class="small text-muted">パスワード: 1234</div>
+    </div>
+  </div>
+
+  <!-- ポップアップ -->
+  <div class="modal fade" id="matchFoundModal" tabindex="-1" aria-labelledby="matchFoundModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="matchFoundModalLabel">対戦相手が見つかりました！</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          対戦を開始しますか？
+        </div>
+        <div class="modal-footer">
+          <button id="startMatchButton" type="button" class="btn btn-primary">開始</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JavaScriptとカスタムスクリプト -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../Script/much.js"></script>
+
+</body>
+</html>

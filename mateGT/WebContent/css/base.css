@@ -27,8 +27,7 @@
             border-radius: 5px;
             margin-bottom: 10px;
         }
-
-		.logoimg{
-
-
-	}
+		img.logoimg{
+			width: 300px;
+			height: 150px;
+		}

@@ -1,0 +1,14 @@
+<Context reloadable="true">
+
+	<Resource
+		name="jdbc/mateGT"
+		auth="Container"
+		type="javax.sql.DataSource"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql,//localhost/mate"
+		username="sa"
+		password=""
+	/>
+
+
+</Context>

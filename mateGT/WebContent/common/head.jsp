@@ -7,19 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ホーム画面</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/base.css">
 
 </head>
 <body>
     <header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-light">
-        	<div class="icon mb-3">
         		<a href="Top_page.action">
-            		<img src="./images/mate-GT-2024-11-20.png" alt="アイコン" >
+            		<img src="../images/mate-GT-2024-11-20.png" class="logoimg" alt="アイコン" >
             	</a>
-        	</div>
 
         <div>
-            <a href="" class="text-primary text-decoration-none mx-2">利用規約</a>
-            <a href="" class="text-primary text-decoration-none mx-2">対戦ルール</a>
+            <a href="kiyaku.jsp" class="text-primary text-decoration-none mx-2">利用規約</a>
+            <a href="rule.jsp" class="text-primary text-decoration-none mx-2">対戦ルール</a>
         </div>
         <div>
         	<c:choose>
@@ -34,11 +33,7 @@
         </div>
     </header>
 
-        <div class="search-bar mb-4 my-5">
-            <form action="<%= request.getContextPath() %>/search" method="get">
-                <input type="text" name="query" class="form-control w-75 mx-auto" placeholder="検索...">
-            </form>
-        </div>
+
 
 
 		<div class="menu d-flex justify-content-center">
@@ -51,7 +46,6 @@
         <div class="menu d-flex justify-content-center gap-4 my-5">
             <a href="O_Room.action" class="btn btn-danger" >オープンマッチ</a>
             <a class="btn btn-danger" href="R_Room.action">レートマッチ</a>
-            <button class="btn btn-danger" href="">掲示板</button>
             <a href="Ranking.action" class="btn btn-danger" >ランキング</a>
         </div>
 

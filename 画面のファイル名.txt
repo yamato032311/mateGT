@@ -32,3 +32,61 @@ room-rate.html : 対戦ルーム(2人)
 
 popup.html : 対戦結果送信時の確認
 room.html : 対戦ルーム一覧画面
+
+利用規約
+
+
+
+/src
+
+  /model          ← データベース操作関連クラス（M）
+    Post.java
+    Character.java
+    Ranking.java
+    Room.java
+    User.java
+
+  /dao       
+    BbsDAO.java
+    CharacterDAO.java
+    RankingDAO.java
+    RoomDAO.java
+    UserDAO.java
+
+  /controller      ← 各画面に対応するコントローラ（C）
+    BbsController.java
+    CharacterController.java
+    RankingController.java
+    RoomController.java
+    UserController.java
+
+  /view            ← JSPファイル（V）
+    /bbs
+      bbs.jsp
+      bbs-detail.jsp
+      bbs-post.jsp
+    /character
+      character.jsp
+      character-detail.jsp
+    /user
+      login.jsp
+      logout.jsp
+      sign-in.jsp
+      mypage.jsp
+      mypage-change.jsp
+      delete-account.jsp
+    /ranking
+      ranking.jsp
+    /room
+      room.jsp
+      room-make-open.jsp
+      room-make-rate.jsp
+      room-open2.jsp
+      room-open3.jsp
+      room-open4.jsp
+      room-rate.jsp
+    /common
+      header.jsp
+      footer.jsp
+    index.jsp
+    error.jsp

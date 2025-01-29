@@ -12,7 +12,7 @@ public class Dao {
 	public Connection getConnection() throws Exception {
 		if (ds==null) {
 			InitialContext ic=new InitialContext();
-			ds=(DataSource)ic.lookup("java:/comp/env/jdbc/mateGT");
+			ds=(DataSource)ic.lookup("java:comp/env/jdbc/mateGT");
 		}
 		return ds.getConnection();
 	}

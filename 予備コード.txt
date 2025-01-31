@@ -13,3 +13,19 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
               ></iframe>
+ 
+
+
+SELECT COUNT(*) FROM T003_O_room_participants WHERE o_room_id = <room_id>;
+
+
+// 部屋に参加している参加者の数を取得
+int currentParticipants = getParticipantsCount(oRoomId);  // 部屋IDを使って参加者数を取得
+
+if (currentParticipants >= 4) {
+    // 4人以上の参加者がいる場合、参加できないようにする
+    throw new Exception("参加者数が最大の4人に達しています。");
+} else {
+    // 参加者追加処理
+    addParticipant(oRoomId, userId);
+}

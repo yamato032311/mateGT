@@ -1,0 +1,17 @@
+/* Footerリンクのスタイル */
+.footer-link {
+    transition: color 0.3s, text-decoration 0.3s;
+    color: #f9fafb; /* 白色 */
+    text-decoration: none;
+  }
+  
+  .footer-link:hover {
+    color: #60a5fa; /* 青色 */
+    text-decoration: underline;
+  }
+  
+  /* Footer全体のスタイル */
+  footer {
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* 上部に軽い影を追加 */
+  }
+  

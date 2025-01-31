@@ -1,12 +1,21 @@
-<header class="bg-gray-800 text-white p-4">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header with Enhanced UI</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <header class="bg-gray-800 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
-      <a href="/" class="text-2xl font-bold">mateGT</a>
+      <a class="text-2xl font-bold hover:text-blue-400">mateGT</a>
       <nav>
         <ul class="flex space-x-4">
-          <li><a href="/games">部屋一覧</a></li>
-          <li><a href="/matches">キャラ一覧</a></li>
-          <li><a href="/community">掲示板</a></li>
-          <li><a href="/community">ランキング</a></li>
+          <li><a href="/games" class="hover:text-blue-400">部屋一覧</a></li>
+          <li><a href="/matches" class="hover:text-blue-400">キャラ一覧</a></li>
+          <li><a href="/community" class="hover:text-blue-400">掲示板</a></li>
+          <li><a href="/ranking" class="hover:text-blue-400">ランキング</a></li>
         </ul>
       </nav>
       <div class="flex items-center space-x-4">
@@ -14,20 +23,21 @@
           <input
             type="text"
             placeholder="検索..."
-            class="bg-gray-700 text-white px-4 py-2 rounded-full"
+            class="search-input bg-gray-700 text-white px-4 py-2 rounded-full"
           />
           <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M21 21l-4.35-4.35M16.5 9.75a6.75 6.75 0 1 1-13.5 0 6.75 6.75 0 0 1 13.5 0Z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
           </svg>
         </div>
-        <a href="/register" class="text-white px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700">新規登録</a>
-        <a href="/login" class="text-white px-4 py-2 bg-green-600 rounded-full hover:bg-green-700">ログイン</a>
+        <a href="/register" class="button text-white px-4 py-2 bg-blue-600 rounded-full hover:bg-blue-700">新規登録</a>
+        <a href="/login" class="button text-white px-4 py-2 bg-green-600 rounded-full hover:bg-green-700">ログイン</a>
         <a href="/mypage" class="text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 21v-2a4 4 0 0 0-8 0v2m4-6a4 4 0 0 0 0-8 4 4 0 0 0 0 8Z"></path>
           </svg>
         </a>
       </div>
     </div>
   </header>
-  
+</body>
+</html>

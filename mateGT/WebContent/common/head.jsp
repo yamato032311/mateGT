@@ -21,15 +21,20 @@
             <a href="rule.jsp" class="text-primary text-decoration-none mx-2">対戦ルール</a>
         </div>
         <div>
-        	<c:choose>
-                <c:when test="${not empty sessionScope.user}">
-                    <a href="${pageContext.request.contextPath}/logout.jsp" class="text-primary text-decoration-none mx-2">ログアウト</a>
+         <c:choose>
+                <c:when test="${sessionScope.user.isAuthenticated()}">
+                    <a href="Logout.action" class="text-primary text-decoration-none mx-2">ログアウト</a>
                 </c:when>
-                <c:otherwise>
-                    <a href="Login.action" class="text-primary text-decoration-none mx-2">ログイン</a>
+
+			    <c:otherwise>
+			        <a href="Login.action" class="text-primary text-decoration-none mx-2">ログイン</a>
                     <a href="Sign_in.action" class="text-primary text-decoration-none mx-2">新規登録</a>
-                </c:otherwise>
-           </c:choose>
+			    </c:otherwise>
+		</c:choose>
+
+
+
+
         </div>
     </header>
 

@@ -13,46 +13,46 @@ public class UserDao  extends Dao {
     public void insertUser(UserBean user) throws Exception {
         try (
         	Connection connection=getConnection();
-        	PreparedStatement preparedStatement = connection.prepareStatement( "INSERT INTO t001_user (mail, pass) VALUES (?, ?)")) {
+        	PreparedStatement preparedStatement = connection.prepareStatement( "INSERT INTO t001_user (mail, pass, user_name) VALUES (?, ?, ?)")) {
             preparedStatement.setString(1, user.getMail());
             preparedStatement.setString(2, user.getPass());
+            preparedStatement.setString(3, user.getName());
             preparedStatement.executeUpdate();
 
         }
     }
 
-    public UserBean loginUser(String mail, String pass) throws Exception{
-    	  String sql = "SELECT user_id, mail, pass, user_icon, user_name, main_chara_id, comment " +
-                  "FROM t001_user WHERE mail = ? AND pass = ?";
+    public UserBean loginUser(String mail, String pass) throws Exception {
+        String sql = "SELECT user_id, mail, pass, user_icon, user_name, main_chara_id, comment " +
+                     "FROM t001_user WHERE mail = ? AND pass = ?";
 
-     // Try-with-resources to ensure connection, prepared statement, and result set are closed properly
-     try (Connection conn = getConnection();
-          PreparedStatement ps = conn.prepareStatement(sql)) {
+        try (Connection conn = getConnection();  // DaoのgetConnection()を利用
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-         ps.setString(1, mail);  // Set the mail parameter
-         ps.setString(2, pass);  // Set the password parameter
+            ps.setString(1, mail);
+            ps.setString(2, pass);
 
-         try (ResultSet rs = ps.executeQuery()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next())
+                {
+                        UserBean user = new UserBean();
+                        user.setNo(rs.getInt("user_id"));
+                        user.setMail(rs.getString("mail"));
+                        user.setPass(rs.getString("pass"));  // セキュリティ上、返さないほうが良い
+                        user.setIcon(rs.getInt("user_icon"));
+                        user.setName(rs.getString("user_name"));
+                        user.setChara_id(rs.getInt("main_chara_id"));
+                        user.setComment(rs.getString("comment"));
+                        return user;
+                    }
+                }
 
-             if (rs.next()) {
-                 // If a user is found, create and populate the UserBean object
-                 UserBean user = new UserBean();
-                 user.setNo(rs.getInt("user_id"));
-                 user.setMail(rs.getString("mail"));
-                 user.setPass(rs.getString("pass"));
-                 user.setIcon(rs.getInt("user_icon"));
-                 user.setName(rs.getString("user_name"));
-                 user.setComment(rs.getString("comment"));
-                 return user;  // Return the user if found
-             }
-         }
-     } catch (SQLException e) {
-         e.printStackTrace();  // Log the exception (optional)
-     }
-
-     // Return null if no matching user is found
-     return null;
- }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("データベースエラーが発生しました。");
+        }
+        return null;  // ユーザーが見つからない場合
+    }
 }
 
     // IDでユーザーを取得

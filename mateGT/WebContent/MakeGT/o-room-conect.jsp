@@ -14,7 +14,7 @@
         // プレイヤーが参加したと仮定して、ボタンを有効化する例
         function simulatePlayerJoin() {
             const player2Div = document.getElementById('player2');
-            player2Div.innerHTML = `
+            player2Div.innerHTML =
                 <div class="card p-3 text-center">
                     <img src="user2-icon.png" alt="ユーザーアイコン" class="rounded-circle mb-2" style="width: 80px; height: 80px;">
                     <div class="font-weight-bold">ユーザー名2</div>
@@ -85,7 +85,7 @@
 
         <!-- 退出ボタン -->
         <div class="text-center my-4">
-            <button class="btn btn-danger" disabled>退出</button>
+            <a href="BackTop.action" class="btn btn-danger" >退出</a>
         </div>
 
         <!-- ルーム情報 -->

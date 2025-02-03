@@ -18,7 +18,7 @@
 
                 <h3>ユーザーID</h3>
                 <h3 class="mt-4">プロフィール
-                	<a href="profile.jsp" class="btn btn-primary  mb-3 mt-2">プロフィール編集</a>
+                	<a href="Profile.action" class="btn btn-primary  mb-3 mt-2">プロフィール編集</a>
                 </h3>
 
                 <ul>
@@ -33,7 +33,7 @@
 
             <!-- History Section -->
             <div class="history-section">
-                <h4>歴代の勝敗 昨日との差分</h4>
+                <h4>歴代の勝敗</h4>
 
                 <h5>対戦履歴</h5>
                 <table class="table">
@@ -67,19 +67,7 @@
                     </ul>
                 </nav>
 
-                <div class="diary-list">
-                    <h4>今までの日記一覧</h4>
-                    <div class="diary-item">
-                        <h5>Title</h5>
-                        <p class="text-muted">Mon Nov 11 2024</p>
-                        <p>日記の内容をここに表示します...</p>
-                    </div>
-                    <div class="diary-item">
-                        <h5>Title</h5>
-                        <p class="text-muted">Tue Nov 12 2024</p>
-                        <p>日記の内容をここに表示します...</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

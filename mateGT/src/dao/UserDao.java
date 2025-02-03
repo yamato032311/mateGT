@@ -53,6 +53,36 @@ public class UserDao  extends Dao {
         }
         return null;  // ユーザーが見つからない場合
     }
+
+    public boolean updateUser_1(UserBean user) throws Exception {
+        String sql = "UPDATE t001_user u LEFT JOIN T010_character c1 ON u.chara_main_id = c1.chara_id "+
+                 "LEFT JOIN T010_character c2 ON u.chara_sub_id = c2.chara_id " +
+                 "SET u.user_name = ?, u.comment = ?, u.chara_sub_id = ? u.sub_id = ? WHERE u.user_id = ?";
+
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, user.getName());// ユーザー名
+            ps.setString(2, user.getComment());   // コメント
+
+            if (user.getChara_id() == null) {
+                ps.setNull(5, java.sql.Types.INTEGER); // NULL をセット
+            } else {
+                ps.setInt(5, user.getChara_id());
+            }
+
+            // chara_sub_id の処理
+            if (user.getSub_id() == null) {
+                ps.setNull(6, java.sql.Types.INTEGER);
+            } else {
+                ps.setInt(6, user.getSub_id());
+            }
+            ps.setInt(5, user.getNo());           // 更新対象のユーザーID
+
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0; // 1行以上更新されたら成功
+        }
+    }
 }
 
     // IDでユーザーを取得

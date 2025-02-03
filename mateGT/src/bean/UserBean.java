@@ -9,7 +9,8 @@ public class UserBean implements Serializable{
 	private String pass;
 	private Integer icon;
 	private String name;
-	private Integer chara_id;
+	private Integer chara_main_id;
+	private Integer chara_sub_id;
 	private String comment;
 	private boolean isAuthenticated;
 
@@ -39,8 +40,11 @@ public class UserBean implements Serializable{
 	 public String getName() { return name; }
 	 public void setName(String name) { this.name = name; }
 
-	 public Integer getChara_id() { return chara_id; }
-	 public void setChara_id(Integer chara_id) { this.chara_id = chara_id; }
+	 public Integer getChara_id() { return chara_main_id; }
+	 public void setChara_id(Integer chara_main_id) { this.chara_main_id = chara_main_id; }
+
+	 public Integer getSub_id() { return chara_sub_id; }
+	 public void setSub_id(Integer chara_sub_id) { this.chara_sub_id = chara_sub_id; }
 
 	 public String getComment() { return comment; }
 	 public void setComment(String comment) { this.comment = comment; }

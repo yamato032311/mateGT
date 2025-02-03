@@ -13,7 +13,7 @@
                 <h1 class="me-3">レート</h1>
 
                 <c:if test="${sessionScope.user.isAuthenticated()}">
-                	<a href="O_Room_Create.action" class="btn btn-primary me-3">部屋作成</a>
+                	<a href="R_Room_Create.action" class="btn btn-primary me-3">部屋作成</a>
                 </c:if>
 
                 <div class="form-group">
@@ -24,14 +24,22 @@
             </div>
 
             <div class="d-flex align-items-center mb-4">
-           	 <label for="rateRange " class="me-3"></label>
-            	<select class="form-control me-3" id="rateRange" name="rateRange">
-            		<option selected hidden>レートの条件</option>
-            		<option value="low">低</option>
-            		<option value="medium">中</option>
-            		<option value="high">高</option>
-            		<option value="none">なし</option>
-            	</select>
+             	 <label for="rateRange " class="me-3"></label>
+	            <select class="form-control me-3" id="rateRange" name="rateRange">
+				    <option selected hidden>レートの条件</option>
+				    <option value="none">なし</option>
+				    <option value="low">～1000</option>
+				    <c:forEach var="i" begin="1000" end="2000" step="200">
+				        <c:choose>
+				            <c:when test="${i == 2000}">
+				                <option value="${i}+">${i}～</option>
+				            </c:when>
+				            <c:otherwise>
+				                <option value="${i}-${i+200}">${i}～${i+200}</option>
+				            </c:otherwise>
+				        </c:choose>
+		    		</c:forEach>
+		    		</select>
             	<button class=" btn btn-primary">検索</button>
             </div>
 

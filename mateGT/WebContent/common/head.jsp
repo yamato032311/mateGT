@@ -14,12 +14,10 @@
     <header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-light">
         		<a href="Top_page.action">
             		<img src="../images/mate-GT-2024-11-20.png" class="logoimg" alt="アイコン" >
+
             	</a>
 
-        <div>
-            <a href="kiyaku.jsp" class="text-primary text-decoration-none mx-2">利用規約</a>
-            <a href="rule.jsp" class="text-primary text-decoration-none mx-2">対戦ルール</a>
-        </div>
+
         <div>
          <c:choose>
                 <c:when test="${sessionScope.user.isAuthenticated()}">
@@ -39,7 +37,11 @@
     </header>
 
 
-
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
 
 		<div class="menu d-flex justify-content-center">
 			<a href="mypage.jsp">
@@ -48,11 +50,6 @@
 		</div>
 
 
-        <div class="menu d-flex justify-content-center gap-4 my-5">
-            <a href="O_Room.action" class="btn btn-danger" >オープンマッチ</a>
-            <a class="btn btn-danger" href="R_Room.action">レートマッチ</a>
-            <a href="Ranking.action" class="btn btn-danger" >ランキング</a>
-        </div>
 
 
 

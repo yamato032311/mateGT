@@ -1,17 +1,19 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 
 
+
 <div class="mb-2">
-	<a href="Menu.action">メニュー</a>
+	<a href="kiyaku.jsp">利用規約</a>
 </div>
 <div class="mb-2">
-	<a href="StudentList.action">学生管理</a>
+	<a href="rule.jsp">対戦ルール</a>
 </div>
-成績管理
+部屋一覧
 <ul style="list-style: none;">
-	<li><a href="TestRegist.action">成績登録</a></li>
-	<li><a href="TestList.action">成績参照</a></li>
+	<li><a href="O_Room.action">オープンマッチ</a></li>
+	<li><a href="R_Room.action">レートマッチ</a></li>
 </ul>
+
 <div class="mb-2">
-	<a href="SubjectList.action">科目管理</a>
+	<a href="Ranking.action">ランキング</a>
 </div>

@@ -3,12 +3,11 @@
 <head>
     <title>オープンルーム作成</title>
      <link rel="stylesheet" href="<%=request.getContextPath() %>/css/o-room.css">
-
-
 </head>
+
 <body>
     <div class="container">
-        <h1>オープンルーム作成</h1>
+        <h1>レートルーム作成</h1>
         <form action="CreateRoomServlet" method="post">
             <!-- Room ID -->
             <label for="roomId">ルームID (5桁)</label>
@@ -22,9 +21,7 @@
             <label for="members">募集人数</label>
             <select id="members" name="members" required>
                 <option value="2">1人</option>
-                <option value="3">2人</option>
-                <option value="4">3人</option>
-            </select>
+              </select>
 
             <!-- Submit Button -->
             <button type="submit">ルーム作成</button>

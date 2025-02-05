@@ -8,10 +8,10 @@
 <body>
     <div class="container">
         <h1>レートルーム作成</h1>
-        <form action="CreateRoomServlet" method="post">
+        <form action="O_Room_CreateExe.action" method="post">
             <!-- Room ID -->
-            <label for="roomId">ルームID (5桁)</label>
-            <input type="text" id="roomId" name="roomId" placeholder="ルームIDを入力" maxlength="5" required>
+            <label for="roomId">部屋番号 (5桁)</label>
+            <input type="text" id="roomId" name="roomId" placeholder="部屋番号を入力" maxlength="5" required>
 
             <!-- Password -->
             <label for="password">パスワード (4桁)</label>

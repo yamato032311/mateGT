@@ -44,9 +44,13 @@
 		<br>
 
 		<div class="menu d-flex justify-content-center">
-			<a href="mypage.jsp">
-		    	<img src="https://via.placeholder.com/50" alt="アイコン" class="img-fluid">
-		     </a>
+		<c:choose>
+		    <c:when test="${sessionScope.user.isAuthenticated()}">
+                <a href="Mypage.action">
+		    		<img src="https://via.placeholder.com/50" alt="アイコン" class="img-fluid">
+		     	</a>
+             </c:when>
+		</c:choose>
 		</div>
 
 

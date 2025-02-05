@@ -40,7 +40,7 @@
 				        </c:choose>
 		    		</c:forEach>
 		    		</select>
-            	<button class=" btn btn-primary">検索</button>
+            	<a href="Search.action" class=" btn btn-primary">検索</a>
             </div>
 
             <div class="card">

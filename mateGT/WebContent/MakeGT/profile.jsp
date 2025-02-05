@@ -66,7 +66,7 @@
 	      <textarea id="comment" name="comment" rows="3"></textarea>
 	    </div>
 
-	    <button type="button">変更</button>
+	    <button class=" btn btn-lg btn-primary" type="submit">変更</button>
     </form>
 
   </div>

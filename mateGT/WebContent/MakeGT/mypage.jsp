@@ -16,16 +16,16 @@
             <!-- Profile Section -->
             <div class="profile-section">
 
-                <h3>ユーザーID</h3>
+                <h3>ユーザーID: <c:out value="${sessionScope.user.no}" /></h3>
                 <h3 class="mt-4">プロフィール
                 	<a href="Profile.action" class="btn btn-primary  mb-3 mt-2">プロフィール編集</a>
                 </h3>
 
                 <ul>
-                    <li>ユーザー名: サンプル名</li>
-                    <li>レート: 1234</li>
-                    <li>使用キャラ:</li>
-                    	<img src="/path/to/character.png" alt="キャラクターアイコン" class="profile-icon">
+                    <li>ユーザー名: <c:out value="${sessionScope.user.name}" /></li>
+                    <li>レート: <c:out value="${sessionScope.user.rate}" /></li>
+                      <img src="<c:url value='/images/chara/${sessionScope.user.mainCharaId}.png' />"
+                             alt="キャラクターアイコン" class="profile-icon">
                     <li>一言コメント:</li>
                     <textarea class="form-control" rows="3">ここにコメントを入力</textarea>
                 </ul>
@@ -66,6 +66,8 @@
                         <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
                     </ul>
                 </nav>
+
+                <a  href="Top_page.action">トップページに戻る</a>
 
 
             </div>

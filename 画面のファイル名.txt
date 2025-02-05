@@ -36,6 +36,74 @@ room.html : 対戦ルーム一覧画面
 利用規約
 
 
+/project-root
+  ├── /src
+  │    ├── /model              ← モデル層 (M)
+  │    │    ├── User.java
+  │    │    ├── RRoom.java
+  │    │    ├── ORoom.java
+  │    │    ├── Evaluation.java
+  │    │    ├── Block.java
+  │    │    ├── Bulletin.java
+  │    │    ├── RScore.java
+  │    │    ├── Diary.java
+  │    │    ├── Good.java
+  │    │    ├── Character.java
+  │    │    ├── RateHistory.java
+  │    │    └── Admin.java
+  │    └── /dao                ← データアクセス層
+  │         ├── UserDao.java
+  │         ├── RRoomDao.java
+  │         ├── ORoomDao.java
+  │         ├── EvaluationDao.java
+  │         ├── BlockDao.java
+  │         ├── BulletinDao.java
+  │         ├── RScoreDao.java
+  │         ├── DiaryDao.java
+  │         ├── GoodDao.java
+  │         ├── CharacterDao.java
+  │         ├── RateHistoryDao.java
+  │         └── AdminDao.java
+  ├── /webapp
+  │    ├── /view               ← ビュー層 (V)
+  │    │    ├── /user
+  │    │    │    ├── login.jsp
+  │    │    │    ├── logout.jsp
+  │    │    │    ├── sign-in.jsp
+  │    │    │    ├── mypage.jsp
+  │    │    │    ├── mypage-change.jsp
+  │    │    │    └── delete-account.jsp
+  │    │    ├── /room
+  │    │    │    ├── rate-room-list.jsp
+  │    │    │    ├── open-room-list.jsp
+  │    │    │    ├── room-detail.jsp
+  │    │    │    └── room-create.jsp
+  │    │    ├── /bulletin
+  │    │    │    ├── bulletin-list.jsp
+  │    │    │    ├── bulletin-detail.jsp
+  │    │    │    └── bulletin-create.jsp
+  │    │    ├── /diary
+  │    │    │    ├── diary-list.jsp
+  │    │    │    ├── diary-detail.jsp
+  │    │    │    └── diary-create.jsp
+  │    │    ├── /admin
+  │    │    │    ├── admin-dashboard.jsp
+  │    │    │    └── admin-login.jsp
+  │    │    ├── /common
+  │    │    │    ├── header.jsp
+  │    │    │    ├── footer.jsp
+  │    │    │    └── navigation.jsp
+  │    │    ├── index.jsp
+  │    │    └── error.jsp
+  │    └── /assets             ← 静的リソース (CSS, JS, 画像)
+  │         ├── /css
+  │         │    ├── style.css
+  │         ├── /js
+  │         │    ├── script.js
+  │         └── /images
+  │              ├── icons
+  │              └── ...
+
 
 /src
 
@@ -45,6 +113,7 @@ room.html : 対戦ルーム一覧画面
     Ranking.java
     Room.java
     User.java
+    block.java
 
   /dao       
     BbsDAO.java
@@ -80,7 +149,9 @@ room.html : 対戦ルーム一覧画面
     /room
       room.jsp
       room-make-open.jsp
+      room-open-muchloading.jsp
       room-make-rate.jsp
+      room-rate-muchloading.jsp
       room-open2.jsp
       room-open3.jsp
       room-open4.jsp

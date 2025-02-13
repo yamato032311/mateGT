@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/base.css">
 </head>
 <body>
+
     <div class="container mt-5">
     	 <img src="/path/to/icon.png" alt="ユーザーアイコン" class="profile-icon mb-3">
         <div class="main-section">
@@ -24,7 +25,7 @@
                 <ul>
                     <li>ユーザー名: <c:out value="${sessionScope.user.name}" /></li>
                     <li>レート: <c:out value="${sessionScope.user.rate}" /></li>
-                      <img src="<c:url value='/images/chara/${sessionScope.user.mainCharaId}.png' />"
+                      <img src="<c:url value='${imagePathMain}' />"
                              alt="キャラクターアイコン" class="profile-icon">
                     <li>一言コメント:</li>
                     <textarea class="form-control" rows="3">ここにコメントを入力</textarea>

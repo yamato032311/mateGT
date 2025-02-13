@@ -6,7 +6,7 @@ public class CharacterBean implements Serializable {
 
     private int charaId;
     private String charaName;
-    private String charaicon;
+    private String charaIcon;  // 修正: フィールド名を統一
 
     // ゲッター・セッター
     public int getCharaId() { return charaId; }
@@ -15,6 +15,6 @@ public class CharacterBean implements Serializable {
     public String getCharaName() { return charaName; }
     public void setCharaName(String charaName) { this.charaName = charaName; }
 
-    public String getCharaIcon() { return charaicon; }
-    public void setCharaIcon(String charaicon) { this.charaicon = charaicon; }
+    public String getCharaIcon() { return charaIcon; } // 修正
+    public void setCharaIcon(String charaIcon) { this.charaIcon = charaIcon; } // 修正
 }

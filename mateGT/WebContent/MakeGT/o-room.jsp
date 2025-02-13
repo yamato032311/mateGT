@@ -6,14 +6,13 @@
     <c:param name="scripts"></c:param>
     <c:param name="content">
 
-        <!-- メインエリア -->
         <div class="row my-5">
             <!-- 左カラム -->
             <div class="d-flex justify-content-center align-items-center mb-4">
                 <h1 class="me-3">オープン</h1>
 
-                 <c:if test="${sessionScope.user.isAuthenticated()}">
-                	<a href="O_Room_Create.action" class="btn btn-primary me-3">部屋作成</a>
+                <c:if test="${sessionScope.user.isAuthenticated()}">
+                    <a href="O_Room_Create.action" class="btn btn-primary me-3">部屋作成</a>
                 </c:if>
 
                 <div class="form-group">
@@ -23,38 +22,71 @@
                 </div>
             </div>
 
+            <!-- レート検索 -->
             <div class="d-flex align-items-center mb-4">
-	           	 <label for="rateRange " class="me-3"></label>
-	            <select class="form-control me-3" id="rateRange" name="rateRange">
-				    <option selected hidden>レートの条件</option>
-				    <option value="none">なし</option>
-				    <option value="low">～1000</option>
-				    <c:forEach var="i" begin="1000" end="2000" step="100">
-				        <c:choose>
-				            <c:when test="${i == 2000}">
-				                <option value="${i}+">${i}～</option>
-				            </c:when>
-				            <c:otherwise>
-				                <option value="${i}-${i+100}">${i}～${i+100}</option>
-				            </c:otherwise>
-				        </c:choose>
-		    		</c:forEach>
-				</select>
-            	<button class=" btn btn-primary">検索</button>
+                <label for="rateRange" class="me-3"></label>
+                <select class="form-control me-3" id="rateRange" name="rateRange">
+                    <option selected hidden>レートの条件</option>
+                    <option value="none">なし</option>
+                    <option value="low">～1000</option>
+                    <c:forEach var="i" begin="1000" end="2000" step="100">
+                        <c:choose>
+                            <c:when test="${i == 2000}">
+                                <option value="${i}+">${i}～</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${i}-${i+100}">${i}～${i+100}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+                <button class="btn btn-primary">検索</button>
             </div>
 
-            <div class="card">
-                <div class="card-footer text-center">
-                    <div class="d-flex flex-column align-items-center position-relative">
-                        <a href="o-room-conect.jsp" class="btn btn-primary position-absolute" style="top: 10px; right: 10px;">参加</a>
-                        <img src="icon.png" alt="アイコン" class="mb-2" style="width: 50px; height: 50px;">
-                        <div>ID: <span>id</span></div>
-                        <div>名前: <span>名前</span></div>
-                        <div class="text-muted position-absolute" style="bottom: 10px; right: 10px;">Thu Nov 07 2024</div>
-                    </div>
-                </div>
-            </div>
+            <!-- 部屋一覧 -->
+           <c:forEach var="room" items="${rooms}">
+    		<div class="card mb-3 mt-1" style="max-width: 1100px;">
+		        <div class="card-footer position-relative p-2">
+		            <div class="d-flex align-items-center">
+		                <img src="icon.png" alt="アイコン" class="me-2" style="width: 100px; height: 40px;">
+		                <div class="d-flex flex-column">
+		                    <div>ID: <span>${room.roomId}</span></div>
+		                    <div>作成者: <span>${room.createdBy}</span></div>
+		                    <div> 募集人数: <span>${room.numberApplicants} 人</span></div>
+		                </div>
+		            </div>
+
+		            <form action="Join_O_roomAction" method="post" class="position-absolute top-0 end-0 mt-2 me-2">
+		                <input type="hidden" name="room_num" value="${room.roomNum}">
+		                <button type="submit" class="btn btn-primary btn-sm">参加</button>
+		            </form>
+		            <div class="text-muted small text-end mt-2">${room.startedAt}</div>
+		        </div>
+		    </div>
+		</c:forEach>
+
+
+            <c:if test="${empty rooms}">
+                <p>現在、部屋はありません。</p>
+            </c:if>
+
+            <!-- ページネーション -->
+			<div class="pagination d-flex justify-content-center text-center mt-4">
+			    <c:if test="${currentPage > 1}">
+			        <a href="O_Room.action?page=${currentPage - 1}" class="btn btn-secondary mx-2">前のページ</a>
+			    </c:if>
+
+			    <span class="align-self-center mx-3">ページ ${currentPage} / ${totalPages}</span>
+
+			    <c:if test="${currentPage < totalPages}">
+			        <a href="O_Room.action?page=${currentPage + 1}" class="btn btn-secondary mx-2">次のページ</a>
+			    </c:if>
+			</div>
+
+
         </div>
+
+
 
     </c:param>
 </c:import>

@@ -8,53 +8,56 @@
     <title>オープンルーム待機画面</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-     <!-- BootstrapとJavaScript -->
+    <!-- BootstrapとJavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        // プレイヤーが参加したと仮定して、ボタンを有効化する例
-        function simulatePlayerJoin() {
-            const player2Div = document.getElementById('player2');
-            player2Div.innerHTML =
-                <div class="card p-3 text-center">
-                    <img src="user2-icon.png" alt="ユーザーアイコン" class="rounded-circle mb-2" style="width: 80px; height: 80px;">
-                    <div class="font-weight-bold">ユーザー名2</div>
-                    <div class="text-muted">レート: 1300</div>
-                    <div class="text-muted">使用キャラ: <img src="character2-icon.png" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
-                    <div class="text-muted">ひとこと: "よろしくお願いします！"</div>
+        let participants = [
+            { id: 1, name: "ユーザー名1", rate: 1200, character: "character1-icon.png", message: "頑張ります！" }
+        ]; // 初期プレイヤー1
+
+        function addParticipant(newPlayer) {
+            const playerList = document.getElementById('players');
+
+            let playerCard =
+                <div class="col-md-6">
+                    <div class="card p-3 text-center">
+                        <img src="user-icon.png" alt="ユーザーアイコン" class="rounded-circle mb-2" style="width: 80px; height: 80px;">
+                        <div class="fw-bold">${newPlayer.name}</div>
+                        <div class="text-muted">レート: ${newPlayer.rate}</div>
+                        <div class="text-muted">使用キャラ: <img src="${newPlayer.character}" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
+                        <div class="text-muted">ひとこと: "${newPlayer.message}"</div>
+                    </div>
                 </div>
-            `;
-            document.querySelectorAll('button').forEach(button => button.removeAttribute('disabled'));
+            ;
 
-            // モーダル表示
-            const matchModal = new bootstrap.Modal(document.getElementById('matchFoundModal'));
-            matchModal.show();
+            playerList.innerHTML += playerCard;
         }
 
-        // 対戦開始ボタンのイベントリスナー
-        function setupStartMatchListener() {
-            const startButton = document.getElementById('startMatchButton');
-            startButton.addEventListener('click', () => {
-                // ボタン有効化処理
+        function simulatePlayerJoin() {
+            const newPlayer = {
+                id: participants.length + 1,
+                name: "ユーザー名" + (participants.length + 1),
+                rate: 1100 + (participants.length * 100),
+                character: "character2-icon.png",
+                message: "よろしくお願いします！"
+            };
+
+            participants.push(newPlayer);
+            addParticipant(newPlayer);
+
+            if (participants.length > 1) {
                 document.querySelectorAll('button').forEach(button => button.removeAttribute('disabled'));
-
-                // モーダルを閉じる
-                const matchModal = bootstrap.Modal.getInstance(document.getElementById('matchFoundModal'));
-                matchModal.hide();
-            });
+                const matchModal = new bootstrap.Modal(document.getElementById('matchFoundModal'));
+                matchModal.show();
+            }
         }
 
-        // 初期化処理
-        function initialize() {
-            setupStartMatchListener();
-
-            // シミュレーションのため、3秒後にプレイヤーが参加したように見せる
+        document.addEventListener('DOMContentLoaded', () => {
             setTimeout(simulatePlayerJoin, 3000);
-        }
-
-        // DOM読み込み後に初期化
-        document.addEventListener('DOMContentLoaded', initialize);
+            setTimeout(simulatePlayerJoin, 6000);
+        });
     </script>
-</body>
 </head>
 <body>
     <div class="container my-5">
@@ -62,30 +65,22 @@
         <div class="text-center mb-4">
             <h2>参加者</h2>
         </div>
-        <div class="row">
-            <!-- プレイヤー1 -->
+        <div class="row" id="players">
+            <!-- 初期プレイヤー1 -->
             <div class="col-md-6">
                 <div class="card p-3 text-center">
                     <img src="user1-icon.png" alt="ユーザーアイコン" class="rounded-circle mb-2" style="width: 80px; height: 80px;">
-                    <div class="font-weight-bold">ユーザー名1</div>
+                    <div class="fw-bold">ユーザー名1</div>
                     <div class="text-muted">レート: 1200</div>
                     <div class="text-muted">使用キャラ: <img src="character1-icon.png" alt="キャラアイコン" class="w-8 h-8 inline-block"></div>
                     <div class="text-muted">ひとこと: "頑張ります！"</div>
-                </div>
-            </div>
-
-            <!-- プレイヤー2 -->
-            <div class="col-md-6" id="player2">
-                <div class="card p-3 text-center text-muted">
-                    待機中... <br>
-                    プレイヤーが参加するのを待っています。
                 </div>
             </div>
         </div>
 
         <!-- 退出ボタン -->
         <div class="text-center my-4">
-            <a href="BackTop.action" class="btn btn-danger" >退出</a>
+            <a href="BackTop.action" class="btn btn-danger">退出</a>
         </div>
 
         <!-- ルーム情報 -->
@@ -123,6 +118,5 @@
             </div>
         </div>
     </div>
-
-
+</body>
 </html>

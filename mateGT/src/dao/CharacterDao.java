@@ -34,4 +34,33 @@ public class CharacterDao extends Dao{
 
         return characterList;
     }
+
+
+        public CharacterBean getCharacter(int charaId) throws Exception {
+            String sql = "SELECT * FROM t010_chara WHERE chara_id = ?";  // テーブル名は適宜変更してください
+            CharacterBean character = null;
+
+            try (Connection conn = getConnection();
+                 PreparedStatement ps = conn.prepareStatement(sql)) {
+
+                ps.setInt(1, charaId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {  // while ではなく if に変更
+                        character = new CharacterBean();
+                        character.setCharaId(rs.getInt("chara_id"));
+                        character.setCharaName(rs.getString("chara_name"));
+                        character.setCharaIcon(rs.getString("chara_icon"));
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace(); // ログ出力
+            }
+
+            return character; // データがなければ null を返す
+        }
+
 }
+
+
+
+

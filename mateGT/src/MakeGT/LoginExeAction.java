@@ -24,7 +24,7 @@ public class LoginExeAction extends Action{
             res.sendRedirect("Top_page.action"); // ホーム画面へ
         } else {
             req.setAttribute("errorMessage", "メールアドレスまたはパスワードが間違っています。");
-            req.getRequestDispatcher("Login.action").forward(req, res);
+            res.sendRedirect("Login.action");
 		}
 	}
 }

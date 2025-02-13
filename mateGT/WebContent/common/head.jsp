@@ -11,6 +11,7 @@
 
 </head>
 <body>
+
     <header class="d-flex justify-content-between align-items-center p-3 border-bottom bg-light">
         		<a href="Top_page.action">
             		<img src="../images/mate-GT-2024-11-20.png" class="logoimg" alt="アイコン" >
@@ -44,18 +45,11 @@
 		<br>
 
 		<div class="menu d-flex justify-content-center">
-		<c:choose>
-		    <c:when test="${sessionScope.user.isAuthenticated()}">
                 <a href="Mypage.action">
-		    		<img src="https://via.placeholder.com/50" alt="アイコン" class="img-fluid">
+		    		<img src="../images/chara/コルロ.jpg" alt="アイコン" class="img-fluid">
 		     	</a>
-             </c:when>
-		</c:choose>
+
 		</div>
-
-
-
-
 
 
 

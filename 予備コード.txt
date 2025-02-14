@@ -29,3 +29,16 @@ if (currentParticipants >= 4) {
     // 参加者追加処理
     addParticipant(oRoomId, userId);
 }
+
+public Connection getConnection() throws SQLException {
+    try {
+        if (ds == null) {
+            InitialContext ic = new InitialContext();
+            ds = (DataSource) ic.lookup("java:/comp/env/jdbc/mate");  // リソース名に合わせる
+        }
+        return ds.getConnection();
+    } catch (Exception e) {
+        throw new SQLException("Failed to obtain database connection", e);
+    }
+}
+

@@ -1,0 +1,36 @@
+@startuml
+participant "ユーザー" as User
+participant "ルーム作成アクション" as RoomCreateAction
+participant "ルームDAO" as RoomCreateDAO
+participant "データベース" as DB
+participant "ルーム参加アクション" as RoomJoinAction
+
+== 部屋を作成する（オープン or レート） ==
+User -> RoomCreateAction : 部屋作成リクエスト (room_type, room_num, room_pass, number_applicants)
+RoomCreateAction -> RoomCreateDAO : createRoom(room_type, room_num, room_pass, numberApplicants, userId)
+RoomCreateDAO -> DB : INSERT INTO T002_room_creation
+DB --> RoomCreateDAO : 部屋IDを返す (room_id)
+RoomCreateDAO -> DB : INSERT INTO T003_participants (poster_id)
+DB --> RoomCreateDAO : 成功
+
+alt オープン部屋の場合
+    RoomCreateAction -> User : o-room-connect.jsp にリダイレクト
+else レート部屋の場合
+    RoomCreateAction -> User : r-room-connect.jsp にリダイレクト
+end
+
+== 参加者が部屋に参加する ==
+User -> RoomJoinAction : 参加ボタン押下 (room_id, user_id)
+RoomJoinAction -> RoomCreateDAO : addParticipant(room_id, user_id)
+RoomCreateDAO -> DB : INSERT INTO T003_participants (room_id, user_id, rate)
+DB --> RoomCreateDAO : 成功
+RoomCreateDAO -> DB : UPDATE T002_room_creation SET user_id_X = user_id
+DB --> RoomCreateDAO : 更新成功
+
+alt 部屋が満員
+    RoomCreateDAO -> DB : UPDATE T002_room_creation SET fini_flag = true
+    DB --> RoomCreateDAO : 更新成功
+end
+
+RoomJoinAction -> User : 部屋画面へ遷移
+@enduml

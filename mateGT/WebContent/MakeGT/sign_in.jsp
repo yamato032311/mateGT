@@ -13,7 +13,7 @@
         <form action="Sign_inExecute.action" method="post">
             <h1>新規登録</h1>
 
-            <div class="form-floating ">
+            <div class="form-floating mb-1">
                 <input type="email" class="form-control" id="floatingInput"   placeholder="半角でご入力ください"
                 name="mail" required>
                 <label for="floatingInput">メールアドレス</label>

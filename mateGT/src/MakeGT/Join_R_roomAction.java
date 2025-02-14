@@ -40,7 +40,7 @@ public class Join_R_roomAction extends Action {
 
         // DAO を使用して参加処理
         ParticipantDao participantDao = new ParticipantDao();
-        boolean isJoined = participantDao.addParticipant(participant);
+        boolean isJoined = participantDao.addParticipantRate(participant);
 
         if (isJoined) {
             res.sendRedirect("r-room-conect.jsp");

@@ -1,23 +1,17 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class PartcipantBean implements Serializable {
-
     private int participantId;
     private int roomId;
     private int userId;
     private Integer entryRate;
     private Integer exitRate;
-    private int userWinFlag;
-    private Date roomStartTime;
-    private Date roomEndTime;
+    private Integer userWinFlag;
+    private String roomStartTime;
+    private String roomEndTime;
 
-    // コンストラクタ
-    public PartcipantBean() {}
-
-    // Getter & Setter
     public int getParticipantId() { return participantId; }
     public void setParticipantId(int participantId) { this.participantId = participantId; }
 
@@ -33,12 +27,12 @@ public class PartcipantBean implements Serializable {
     public Integer getExitRate() { return exitRate; }
     public void setExitRate(Integer exitRate) { this.exitRate = exitRate; }
 
-    public int getUserWinFlag() { return userWinFlag; }
-    public void setUserWinFlag(int userWinFlag) { this.userWinFlag = userWinFlag; }
+    public Integer getUserWinFlag() { return userWinFlag; }
+    public void setUserWinFlag(Integer userWinFlag) { this.userWinFlag = userWinFlag; }
 
-    public Date getRoomStartTime() { return roomStartTime; }
-    public void setRoomStartTime(Date roomStartTime) { this.roomStartTime = roomStartTime; }
+    public String getRoomStartTime() { return roomStartTime; }
+    public void setRoomStartTime(String roomStartTime) { this.roomStartTime = roomStartTime; }
 
-    public Date getRoomEndTime() { return roomEndTime; }
-    public void setRoomEndTime(Date roomEndTime) { this.roomEndTime = roomEndTime; }
+    public String getRoomEndTime() { return roomEndTime; }
+    public void setRoomEndTime(String roomEndTime) { this.roomEndTime = roomEndTime; }
 }

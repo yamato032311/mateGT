@@ -4,28 +4,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import bean.PartcipantBean;
 
 public class ParticipantDao extends Dao {
 
-    // 参加者を追加する
-    public boolean addParticipant(PartcipantBean participant) throws Exception {
+    public boolean addParticipantRate(PartcipantBean participant) throws Exception {
         String checkUserSql = "SELECT rate FROM t001_user WHERE user_id = ?";
-        String checkRoomSql = "SELECT room_indification FROM t002_room_creation WHERE room_id = ?";
+        String checkRoomSql = "SELECT room_identification FROM t002_room_creation WHERE room_id = ?";
         String checkRoomCapacitySql = "SELECT COUNT(*) FROM t003_participants WHERE room_id = ?";
-        String insertSql = "INSERT INTO t003_participants (user_id, room_id, entry_rate, user_win_flag, room_start_time) VALUES (?, ?, ?, ?, NOW())";
-        String updateRateSql = "UPDATE t001_user SET rate = rate + 10 WHERE user_id = ?"; // entry_rate変更用
-        String updateWinFlagSql = "UPDATE t003_participants SET win_flag = 1 WHERE user_id = ? AND room_id = ?"; // win_flag変更用
+
+        String insertSqlType1 = "INSERT INTO t003_participants (room_id, user_id, room_start_time) VALUES (?, ?, NOW())";
+        String insertSqlType2 = "INSERT INTO t003_participants (room_id, user_id, entry_rate, room_start_time) VALUES (?, ?, ?, NOW())";
 
         try (Connection conn = getConnection()) {
             conn.setAutoCommit(false);
             int entryRate = 0;
-            int roomIndification = 0;
+            int roomIdentification = 0;
 
-            // ユーザーが存在するか確認 & レート取得
+            // ユーザーのレート取得
             try (PreparedStatement userStmt = conn.prepareStatement(checkUserSql)) {
                 userStmt.setInt(1, participant.getUserId());
                 try (ResultSet rs = userStmt.executeQuery()) {
@@ -33,68 +30,45 @@ public class ParticipantDao extends Dao {
                         entryRate = rs.getInt("rate");
                     } else {
                         conn.rollback();
-                        System.err.println("Error: user_id " + participant.getUserId() + " does not exist.");
                         return false;
                     }
                 }
             }
 
-            // ルームの情報を取得 (room_indification を取得)
+            // ルーム情報取得 (roomIdentification を RoomCreationBean に適用)
             try (PreparedStatement roomStmt = conn.prepareStatement(checkRoomSql)) {
                 roomStmt.setInt(1, participant.getRoomId());
                 try (ResultSet rs = roomStmt.executeQuery()) {
                     if (rs.next()) {
-                        roomIndification = rs.getInt("room_indification");
+                        roomIdentification = rs.getInt("room_identification");
                     } else {
                         conn.rollback();
-                        System.err.println("Error: room_id " + participant.getRoomId() + " does not exist.");
                         return false;
                     }
                 }
             }
 
-            // ルームの参加人数を確認 (上限は room_indification によって異なる)
-            int maxParticipants = (roomIndification == 1) ? 4 : 2;
-
+            // 参加者上限確認
+            int maxParticipants = (roomIdentification == 1) ? 4 : 2;
             try (PreparedStatement capacityStmt = conn.prepareStatement(checkRoomCapacitySql)) {
                 capacityStmt.setInt(1, participant.getRoomId());
                 try (ResultSet rs = capacityStmt.executeQuery()) {
                     if (rs.next() && rs.getInt(1) >= maxParticipants) {
                         conn.rollback();
-                        System.err.println("Error: room_id " + participant.getRoomId() + " is full (max " + maxParticipants + " players).");
                         return false;
                     }
                 }
             }
 
-            // 参加者情報を追加
-            int winFlag = 0;
-            try (PreparedStatement pstmt = conn.prepareStatement(insertSql)) {
-                pstmt.setInt(1, participant.getUserId());
-                pstmt.setInt(2, participant.getRoomId());
-                pstmt.setInt(3, entryRate);
-                pstmt.setInt(4, winFlag);
-
-                int result = pstmt.executeUpdate();
-                if (result <= 0) {
+            // 参加登録
+            try (PreparedStatement pstmt = conn.prepareStatement(
+                    roomIdentification == 1 ? insertSqlType1 : insertSqlType2)) {
+                pstmt.setInt(1, participant.getRoomId());
+                pstmt.setInt(2, participant.getUserId());
+                if (roomIdentification == 2) pstmt.setInt(3, entryRate);
+                if (pstmt.executeUpdate() <= 0) {
                     conn.rollback();
                     return false;
-                }
-            }
-
-            // ルーム種別が 2 の場合は entry_rate と win_flag を変更
-            if (roomIndification == 2) {
-                // entry_rate を変更
-                try (PreparedStatement updateRateStmt = conn.prepareStatement(updateRateSql)) {
-                    updateRateStmt.setInt(1, participant.getUserId());
-                    updateRateStmt.executeUpdate();
-                }
-
-                // win_flag を更新
-                try (PreparedStatement updateWinFlagStmt = conn.prepareStatement(updateWinFlagSql)) {
-                    updateWinFlagStmt.setInt(1, participant.getUserId());
-                    updateWinFlagStmt.setInt(2, participant.getRoomId());
-                    updateWinFlagStmt.executeUpdate();
                 }
             }
 
@@ -107,27 +81,69 @@ public class ParticipantDao extends Dao {
         }
     }
 
-    // 指定されたルームの参加者リストを取得
-    public List<PartcipantBean> getParticipantsByRoom(int roomId) throws Exception {
-        String sql = "SELECT * FROM t003_participants WHERE room_id = ?";
-        List<PartcipantBean> participants = new ArrayList<>();
 
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, roomId);
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    PartcipantBean participant = new PartcipantBean();
-                    participant.setParticipantId(rs.getInt("participant_id"));
-                    participant.setRoomId(rs.getInt("room_id"));
-                    participant.setUserId(rs.getInt("user_id"));
-                    participant.setEntryRate(rs.getInt("entry_rate"));
-                    participant.setUserWinFlag(rs.getInt("win_flag")); // win_flag を追加
-                    participant.setRoomStartTime(rs.getTimestamp("room_start_time"));
-                    participants.add(participant);
+
+        /**
+         * 指定したルームに参加者を追加する
+         */
+        public boolean addParticipant(PartcipantBean participant) throws Exception {
+            String checkRoomCapacitySql = "SELECT number_applicants FROM t002_room_creation WHERE room_id = ?";
+            String countParticipantsSql = "SELECT COUNT(*) FROM t003_participants WHERE room_id = ?";
+            String insertParticipantSql = "INSERT INTO t003_participants (room_id, user_id, room_start_time) VALUES (?, ?, NOW())";
+
+            try (Connection conn = getConnection()) {
+                conn.setAutoCommit(false);
+
+                int maxParticipants = 0;
+                int currentParticipants = 0;
+
+                // ルームの最大参加者数を取得
+                try (PreparedStatement pstmt = conn.prepareStatement(checkRoomCapacitySql)) {
+                    pstmt.setInt(1, participant.getRoomId());
+                    try (ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            maxParticipants = rs.getInt("number_applicants");
+                        } else {
+                            conn.rollback();
+                            return false;
+                        }
+                    }
                 }
+
+                // 現在の参加者数を取得
+                try (PreparedStatement pstmt = conn.prepareStatement(countParticipantsSql)) {
+                    pstmt.setInt(1, participant.getRoomId());
+                    try (ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            currentParticipants = rs.getInt(1);
+                        }
+                    }
+                }
+
+                // 参加可能か確認
+                if (currentParticipants >= maxParticipants) {
+                    conn.rollback();
+                    return false;
+                }
+
+                // 参加者追加
+                try (PreparedStatement pstmt = conn.prepareStatement(insertParticipantSql)) {
+                    pstmt.setInt(1, participant.getRoomId());
+                    pstmt.setInt(2, participant.getUserId());
+                    if (pstmt.executeUpdate() <= 0) {
+                        conn.rollback();
+                        return false;
+                    }
+                }
+
+                conn.commit();
+                return true;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
             }
         }
-        return participants;
-    }
 }
+
+

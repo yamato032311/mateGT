@@ -57,7 +57,7 @@
 
                         <!-- 現在のユーザーが部屋の作成者と同じでない場合のみ「参加」ボタンを表示 -->
                         <c:if test="${sessionScope.user.no ne room.createdBy}">
-                            <form action="Join_R_room.action" method="post" class="position-absolute top-0 end-0 mt-2 me-2">
+                            <form action="Join_O_room.action" method="post" class="position-absolute top-0 end-0 mt-2 me-2">
                                 <input type="hidden" name="room_id" value="${room.roomId}">
                                 <button type="submit" class="btn btn-primary btn-sm">参加</button>
                             </form>
